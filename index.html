@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hitskip</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div>
+    <button type="button" id="playToggle" onclick="playHandler()">Start!</button>
+  </div>
+
+  <div class="grid">
+    <div class="col-1">
+      <p>kick</p>
+    </div>
+
+    <div class="col-2">
+      <input type="checkbox" id="kick0" checked>
+      <input type="checkbox" id="kick1">
+      <input type="checkbox" id="kick2">
+      <input type="checkbox" id="kick3">
+      <input type="checkbox" id="kick4">
+      <input type="checkbox" id="kick5" checked>
+      <input type="checkbox" id="kick6">
+      <input type="checkbox" id="kick7">
+    </div>
+
+    <div class="col-3">
+      <select id="kickRate">
+        <option value="always" selected>always</option>
+        <option value="often">often</option>
+        <option value="sometimes">sometimes</option>
+        <option value="rarely">rarely</option>
+        <option value="never">never</option>
+      </select>
+    </div>
+
+    <div class="col-1">
+      <p>snare</p>
+    </div>
+
+    <div class="col-2">
+      <input type="checkbox" id="snare0">
+      <input type="checkbox" id="snare1">
+      <input type="checkbox" id="snare2" checked>
+      <input type="checkbox" id="snare3">
+      <input type="checkbox" id="snare4">
+      <input type="checkbox" id="snare5">
+      <input type="checkbox" id="snare6" checked>
+      <input type="checkbox" id="snare7">
+    </div>
+
+    <div class="col-3">
+      <select id="snareRate">
+        <option value="always">always</option>
+        <option value="often" selected>often</option>
+        <option value="sometimes">sometimes</option>
+        <option value="rarely">rarely</option>
+        <option value="never">never</option>
+      </select>
+    </div>
+
+    <div class="col-1">
+      <p>tick</p>
+    </div>
+
+    <div class="col-2">
+      <input type="checkbox" id="tick0">
+      <input type="checkbox" id="tick1" checked>
+      <input type="checkbox" id="tick2">
+      <input type="checkbox" id="tick3" checked>
+      <input type="checkbox" id="tick4">
+      <input type="checkbox" id="tick5" checked>
+      <input type="checkbox" id="tick6">
+      <input type="checkbox" id="tick7" checked>
+    </div>
+
+    <div class="col-3">
+      <select id="tickRate">
+        <option value="always" selected>always</option>
+        <option value="often">often</option>
+        <option value="sometimes">sometimes</option>
+        <option value="rarely">rarely</option>
+        <option value="never">never</option>
+      </select>
+    </div>
+
+    <div class="col-1">
+      <p>BPM</p>
+    </div>
+
+    <div class="col-2">
+      <div class="slidecontainer">
+        <input type="range"
+               min="50"
+               max="150"
+               value="100"
+               step="5"
+               class="slider"
+               id="bpmSlider"
+               oninput="updateBPM()"
+        >
+      </div>
+    </div>
+
+    <div class="col-3">
+      <p id="bpmIndicator">90</p>
+    </div>
+  </div>
+
+  <script src="hitskip.js"></script>
+</body>
