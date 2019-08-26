@@ -117,9 +117,12 @@ function scheduleBeat(startTime, trackIndex) {
         trackIndex = 0;
 
     const beatDur = 30000 / getBPM();
-    const msElapsed = Date.now() - startTime;
-    const msToNextBeat = beatDur - (msElapsed % beatDur);
+
+    let msElapsed = null;
+    let msToNextBeat = null;
     for (var drumType in AUDIO) {
+        msElapsed = Date.now() - startTime;
+        msToNextBeat = beatDur - (msElapsed % beatDur);
         maybePlay(drumType, trackIndex, msToNextBeat);
     }
 
