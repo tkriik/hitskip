@@ -78,7 +78,7 @@ function playHandler() {
 function start() {
     PLAY = true;
     document.getElementById('playToggle').innerHTML = 'stop';
-    setTimeout(() => loopTrack(0), 0);
+    setTimeout(scheduleBeat, 0, Date.now(), 0);
 }
 
 function stop() {
@@ -109,27 +109,25 @@ function getSkipRate(drumType) {
     return rate;
 }
 
-function loopTrack(trackIndex) {
+function scheduleBeat(startTime, trackIndex) {
     if (!PLAY)
         return;
 
-    let ms = 30000 / getBPM();
-    setTimeout(() => loopTrack(trackIndex + 1), ms);
-
-    if (trackIndex === TRACK_LENGTH) {
+    if (trackIndex === TRACK_LENGTH)
         trackIndex = 0;
+
+    const beatDur = 30000 / getBPM();
+    const msElapsed = Date.now() - startTime;
+    const msToNextBeat = beatDur - (msElapsed % beatDur);
+    for (var drumType in AUDIO) {
+        maybePlay(drumType, trackIndex, msToNextBeat);
     }
 
-    for (var drumType in AUDIO) {
-        maybePlay(drumType, trackIndex);
-    }
-
-    for (var drumType in AUDIO) {
-        refreshSource(drumType);
-    }
+    const msToNextSchedule = (beatDur / 2) + msToNextBeat;
+    setTimeout(scheduleBeat, msToNextSchedule, startTime, trackIndex + 1);
 }
 
-function maybePlay(drumType, trackIndex) {
+function maybePlay(drumType, trackIndex, delay) {
     let drumOn = getDrum(drumType, trackIndex);
     if (!drumOn) {
         return;
@@ -142,7 +140,10 @@ function maybePlay(drumType, trackIndex) {
     }
 
     let source = AUDIO[drumType].source;
-    source.start(0);
+    delay = AUDIO_CTX.currentTime + (delay / 1000);
+    source.start(delay);
+
+    refreshSource(drumType);
 }
 
 window.onload = () => {
