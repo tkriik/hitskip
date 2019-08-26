@@ -21,6 +21,7 @@ html * {
 
 button#playToggle {
     background-color: #ff0086;
+    border: 2px solid #fff;
 }
 
 body {
