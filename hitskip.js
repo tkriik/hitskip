@@ -1,20 +1,20 @@
 const AUDIO_CTX = new (window.AudioContext || window.webkitAudioContext)();
 
 const AUDIO = {
-    kick: {
-        filename: 'samples/Bass-Drum-2.wav',
+    bass: {
+        filename: 'samples/bass.ogg',
         buffer: null,
         source: null
     },
 
-    snare: {
-        filename: 'samples/E-Mu-Proteus-FX-Wacky-Snare.wav',
+    hit: {
+        filename: 'samples/hit.ogg',
         buffer: null,
         source: null
     },
 
     tick: {
-        filename: 'samples/Kawai-K1r-Closed-Hi-Hat.wav',
+        filename: 'samples/tick.ogg',
         buffer: null,
         source: null
     }
